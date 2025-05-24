@@ -1,0 +1,270 @@
+%-----------------------------------------------------------%
+% USEPACKAGE
+%-----------------------------------------------------------%
+
+% set the font for LuaLaTeX compiler 
+\usepackage{fontspec}
+\setsansfont{CMU Sans Serif}%{Arial}
+\setmainfont{CMU Serif}%{Times New Roman}
+\setmonofont{CMU Typewriter Text}%{Consolas}
+\defaultfontfeatures{Ligatures={TeX}}
+
+\usepackage[english]{babel}
+
+% verbatim: to use
+% \begin{comment}
+%    content...
+% \end{comment}
+\usepackage{verbatim}
+
+\begin{comment}
+    % settings for pdfLaTeX, commented because to draw Feynman
+    % we need LuaLaTeX compiler  
+    % inputenc: required for inputting international characters
+    %\usepackage[utf8]{inputenc}
+    
+    % fontenc: output font encoding for international characters
+    % in default Eurpopean Computer Modern
+    %\usepackage[T1]{fontenc}
+    
+    % set the font
+    %\usepackage{libertinus}
+    % commented out because in conflict with 'tikz-feynman'
+    %\usepackage[libertine]{newtxmath}
+    %\renewcommand*{\ttdefault}{lmtt}
+\end{comment}
+
+% textcmds: to insert double quotes with
+% \qq{text} e singole con \q{text}
+\usepackage{textcmds}
+
+% csquotes: to write '«' and '»' with \textquote{text}
+\usepackage{csquotes}
+
+% mhchem: to write nuclear reaction
+\usepackage[version=4]{mhchem}
+
+% wrapfig: to write text on the side of a table
+\usepackage{wrapfig}
+
+% xcolor: to use colors, I need that in hyperref 
+% (this package must be included before 'pdfx')
+\usepackage{xcolor}
+
+% pdfx: to compile in pdf/A
+\usepackage[a-1b]{pdfx}
+
+% dirtytalk: to insert <<quotations>>
+\usepackage[
+left = \flqq{},
+right = \frqq{},
+leftsub = \flq{},
+rightsub = \frq{} 
+]{dirtytalk}
+
+% url: to insert links
+\usepackage{url}
+
+% fancyhdr: to have line under the chapter name
+% at the top of the page, in general to set headers
+% and footers
+\usepackage{fancyhdr}
+
+% multirow: to create multirow tables
+\usepackage{multirow}
+
+% subfig: to insert subfloat images
+\usepackage{subfig}
+
+% multicol: to have multicolumn page
+\usepackage{multicol}
+
+% amsmath: to insert matrix
+\usepackage{amsmath}
+
+% float: to insert images in multicolumn page
+\usepackage{float}
+
+% siunitx: to write number with power of 10
+% with \num{}
+\usepackage{siunitx}
+
+% nameref: to insert 'ref' to not numbered sections or similar,
+% e.g. conclusions chapter
+\usepackage{nameref}
+
+% cleveref: to insert '\cref' if we want the first letter of the ref
+% to be lowercase or '\Cref' if uppercase,
+% the option 'noabbrev' avoid abbreviation
+% yhe option 'nameinlink' add the name in the link (like: Figure)
+\usepackage[noabbrev, nameinlink]{cleveref} 
+
+% enumitem: to create numerated itemize
+\usepackage{enumitem}
+
+% geometry: by default book is twoside, moves the text a little
+% to sx/dx for pages odd/even. With this package
+% I avoid that and keep the text centered in all the pages
+\usepackage[headheight=15pt,hmarginratio=1:1]{geometry}
+
+% graphicx: to insert images,
+% e.g. university logo in title
+\usepackage{graphicx}
+
+% titletoc: to create 'toc' (Table Of Contents) only of the appendix of the graphs
+\usepackage{titletoc}
+
+% adjustbox: 'export' allows adjustbox keys in \includegraphics
+\usepackage[export]{adjustbox}
+
+% amsfonts: to insert special math symbols,
+% e.g. the R of Real numbers
+\usepackage{amsfonts}
+
+% to draw Feynman diagrams
+\usepackage{tikz-feynman, contour}
+\tikzfeynmanset{compat=1.1.0}
+
+% textcmds: to insert "quote" with \qq{quoted}
+% and 'quote' con \q{quoted}
+\usepackage{}
+
+% booktabs: to insert into tables the commands \toprule, \midrule, \bottomrule
+\usepackage{booktabs}
+
+% tocbibind:to insert bibliography in the
+% Table of contents
+\usepackage{tocbibind}
+
+% hyperref: to insert connection and hypertextual links
+\usepackage{hyperref}
+
+% listings: to insert code snippets in latex
+\usepackage{listings}
+
+% textcomp: to have straight single quotes in lstlistings
+\usepackage{textcomp}
+
+%-----------------------------------------------------------%
+% PACKAGES SETTINGS
+%-----------------------------------------------------------%
+
+%%%%%%%%%%%%%%%%%
+%%%% siunitx %%%%
+
+% reduce the spacing within the numbers
+% when multiplying numbers in exponential form
+\sisetup{tight-spacing=true}
+
+%%%%%%%%%%%%%%%%%%
+%%%% listings %%%%
+
+% color listings settings
+\definecolor{codegreen}{rgb}{0,0.5,0}
+\definecolor{codegray}{rgb}{0.58,0,0.82}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{1.00,0.80,0.96}
+
+% set the style and font size of listings
+\newcommand{\listingsttfamily}{\fontfamily{lmtt}\footnotesize}
+
+% style settings of listings
+\lstdefinestyle{prettycode}{%
+	basicstyle=\listingsttfamily,
+	backgroundcolor=\color{backcolour},
+	aboveskip={0.9\baselineskip},
+	keepspaces=true,
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{codepurple},
+	numberstyle=\footnotesize\color{codegray},
+	stringstyle=\color{black}, % codepurple
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	numbers=left,
+	numbersep=5pt,
+	xleftmargin=0.2cm,
+	xrightmargin=0.2cm,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	frame=single,
+	tabsize=1}
+
+\lstset{%
+	style=prettycode,
+	language=Python,
+	upquote=true,
+	literate={-}{-}1
+		 {à}{{\`a}}1
+		 {ù}{{\`u}}1
+		 {ì}{{\`i}}1
+		 {è}{{\`e}}1
+	}
+% literate={-}{-}1 to have the symbol (minus -) shorter
+
+%%%%%%%%%%%%%%%%%%
+%%%% fancyhdr %%%%
+
+% fancyhdr settings
+\fancypagestyle{myfancy}{%
+	\fancyhf{} % clear existing header/footer entries
+	\fancyhead[ER]{\nouppercase\leftmark}
+	\fancyhead[OL]{\nouppercase\rightmark}
+	\fancyhead[EL,OR]{\thepage}
+}
+
+%%%%%%%%%%%%%%%%%%
+%%%% hyperref %%%%
+
+% hyperref settings
+\hypersetup{%
+	colorlinks=true,
+	linkcolor=blue, % black
+	filecolor=magenta,
+	urlcolor=codepurple, % \href{https://www.overleaf.com}{Something Linky} oppure \url{https://www.overleaf.com}
+	citecolor=black,
+	%pdftitle={Overleaf Example}, % to change the name of the document when it is opened, this name is that little one on the top left corner that one can read in his pdf viewer (e.g. Okular).
+	% ACHTUNG! When you know the title of this file, insert that as 'pdftitle' with your surname
+	%allcolors=black % use this if you want to set all links to the same color
+}
+\urlstyle{same} % set same style for text and links
+
+%%%%%%%%%%%%%%%%%%%
+%%%% tocbibind %%%%
+
+% is for making sure that when you view the Table of contents in a pdf viewer (e.g. Okular) there is also a reference to the index, while the reference to the index does not appear in the index of the document itself.
+
+% tocbibind settings
+\AtBeginDocument{%
+	\let\latextableofcontents\tableofcontents
+	
+	\renewcommand{\tableofcontents}{
+		\addtocontents{toc}{\protect\setcounter{tocdepth}{-2}}
+		\latextableofcontents
+		\addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
+	}
+}
+
+%-----------------------------------------------------------%
+% COMMANDS DECLARATION
+%-----------------------------------------------------------%
+
+% to change the name of the Table of contents from Contents to Index
+\renewcommand{\contentsname}{Index}
+
+% command to create an empty page and not get in conflict with hyperref
+\newcommand\blankpage{
+	\clearpage
+	\begingroup
+	\null
+	\thispagestyle{empty}
+	\addtocounter{page}{+1}
+	\hypersetup{pageanchor=false}
+	\clearpage
+	\endgroup
+}
+
+% commented out because in conflict with 'tikz-feynman'
+% \overbar: to have a longer overbar
+%\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}

@@ -1,0 +1,52 @@
+%-----------------------------------------------------------%
+
+% openany prevents empty pages before chapters
+\documentclass[a4paper,openany,12pt]{book}
+
+% IMPORT PACKAGES
+\input{./inputs/intro/packages}
+
+% BEGIN DOCUMENT
+\begin{document}
+
+\hypersetup{pageanchor=false}
+
+% TITLEPAGE
+\input{./inputs/intro/titlepage}
+
+% EMPTY SECOND PAGE
+\pagenumbering{roman}
+\blankpage
+\pagestyle{plain}
+
+% TABLE OF CONTENTS
+% set \hypersetup{linkcolor=black}
+% otherwise the toc has the same color of linkcolor in hypersetup
+{%
+	\hypersetup{linkcolor=black}
+	\tableofcontents
+	%\listoffigures % List of figures
+	%\listoftables % List of tables
+}
+
+% CHAPTERS INPUT
+\clearpage
+\blankpage
+\pagenumbering{arabic}
+\input{./inputs/intro/introduction}
+
+\pagestyle{myfancy}
+\input{./inputs/chapters/chapter01}
+\input{./inputs/chapters/chapter02}
+
+\pagestyle{plain}
+\input{./inputs/chapters/conclusions}
+
+% 'plain' sort the bibliography by surname of the first author
+% 'unsrt' sort the bibliography by the sort of quotation in the text
+\bibliographystyle{unsrt}
+\bibliography{bibliography.bib}
+
+\end{document}
+
+%-----------------------------------------------------------%
