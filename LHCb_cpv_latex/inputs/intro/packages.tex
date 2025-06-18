@@ -2,12 +2,13 @@
 % USEPACKAGE
 %-----------------------------------------------------------%
 
+% settings for pdfLaTeX, commented because to draw Feynman
+% we need LuaLaTeX compiler  
 % set the font for LuaLaTeX compiler 
+\usepackage[libertine]{newtxmath}
 \usepackage{fontspec}
-\setsansfont{CMU Sans Serif}%{Arial}
-\setmainfont{CMU Serif}%{Times New Roman}
-\setmonofont{CMU Typewriter Text}%{Consolas}
-\defaultfontfeatures{Ligatures={TeX}}
+\usepackage{libertine}
+\renewcommand*{\ttdefault}{lmtt}
 
 \usepackage[english]{babel}
 
@@ -16,30 +17,6 @@
 %    content...
 % \end{comment}
 \usepackage{verbatim}
-
-\begin{comment}
-    % settings for pdfLaTeX, commented because to draw Feynman
-    % we need LuaLaTeX compiler  
-    % inputenc: required for inputting international characters
-    %\usepackage[utf8]{inputenc}
-    
-    % fontenc: output font encoding for international characters
-    % in default Eurpopean Computer Modern
-    %\usepackage[T1]{fontenc}
-    
-    % set the font
-    %\usepackage{libertinus}
-    % commented out because in conflict with 'tikz-feynman'
-    %\usepackage[libertine]{newtxmath}
-    %\renewcommand*{\ttdefault}{lmtt}
-\end{comment}
-
-% textcmds: to insert double quotes with
-% \qq{text} e singole con \q{text}
-\usepackage{textcmds}
-
-% csquotes: to write '«' and '»' with \textquote{text}
-\usepackage{csquotes}
 
 % mhchem: to write nuclear reaction
 \usepackage[version=4]{mhchem}
@@ -53,14 +30,6 @@
 
 % pdfx: to compile in pdf/A
 \usepackage[a-1b]{pdfx}
-
-% dirtytalk: to insert <<quotations>>
-\usepackage[
-left = \flqq{},
-right = \frqq{},
-leftsub = \flq{},
-rightsub = \frq{} 
-]{dirtytalk}
 
 % url: to insert links
 \usepackage{url}
@@ -79,15 +48,15 @@ rightsub = \frq{}
 % multicol: to have multicolumn page
 \usepackage{multicol}
 
-% amsmath: to insert matrix
-\usepackage{amsmath}
+% mathtools: to insert matrix (etc...)
+\usepackage{mathtools}
 
 % float: to insert images in multicolumn page
 \usepackage{float}
 
-% siunitx: to write number with power of 10
-% with \num{}
-\usepackage{siunitx}
+% physics: to insert physic symbols
+% to use \qty to have automatically sized parenthese
+\usepackage{physics}
 
 % nameref: to insert 'ref' to not numbered sections or similar,
 % e.g. conclusions chapter
@@ -97,7 +66,7 @@ rightsub = \frq{}
 % to be lowercase or '\Cref' if uppercase,
 % the option 'noabbrev' avoid abbreviation
 % yhe option 'nameinlink' add the name in the link (like: Figure)
-\usepackage[noabbrev, nameinlink]{cleveref} 
+\usepackage[noabbrev, nameinlink]{cleveref}
 
 % enumitem: to create numerated itemize
 \usepackage{enumitem}
@@ -117,6 +86,18 @@ rightsub = \frq{}
 % adjustbox: 'export' allows adjustbox keys in \includegraphics
 \usepackage[export]{adjustbox}
 
+% csquotes: to write '«' and '»' with \textquote{text}
+% and to insert "quote" with \enquote{text} 
+\usepackage{csquotes}
+
+% dirtytalk: to insert <<quotations>>
+\usepackage[
+left = \flqq{},
+right = \frqq{},
+leftsub = \flq{},
+rightsub = \frq{} 
+]{dirtytalk}
+
 % amsfonts: to insert special math symbols,
 % e.g. the R of Real numbers
 \usepackage{amsfonts}
@@ -125,10 +106,6 @@ rightsub = \frq{}
 \usepackage{tikz-feynman, contour}
 \tikzfeynmanset{compat=1.1.0}
 
-% textcmds: to insert "quote" with \qq{quoted}
-% and 'quote' con \q{quoted}
-\usepackage{}
-
 % booktabs: to insert into tables the commands \toprule, \midrule, \bottomrule
 \usepackage{booktabs}
 
@@ -136,25 +113,28 @@ rightsub = \frq{}
 % Table of contents
 \usepackage{tocbibind}
 
-% hyperref: to insert connection and hypertextual links
-\usepackage{hyperref}
-
 % listings: to insert code snippets in latex
 \usepackage{listings}
 
 % textcomp: to have straight single quotes in lstlistings
 \usepackage{textcomp}
 
+% efbox: to have bold perimetral lines in tabular
+\usepackage{efbox}
+
+% tabu: to have bold internal lines in tabular
+\usepackage{tabu}
+
+% bm: bold math
+% load after all math to give access to bold math
+\usepackage{bm}
+
+% hyperref: to insert connection and hypertextual links
+\usepackage{hyperref}
+
 %-----------------------------------------------------------%
 % PACKAGES SETTINGS
 %-----------------------------------------------------------%
-
-%%%%%%%%%%%%%%%%%
-%%%% siunitx %%%%
-
-% reduce the spacing within the numbers
-% when multiplying numbers in exponential form
-\sisetup{tight-spacing=true}
 
 %%%%%%%%%%%%%%%%%%
 %%%% listings %%%%
@@ -214,6 +194,18 @@ rightsub = \frq{}
 	\fancyhead[EL,OR]{\thepage}
 }
 
+%%%%%%%%%%%%%%%%%
+%%%%% efbox %%%%%
+
+% efbox settings
+\efboxsetup{linecolor=black, linewidth=1pt, margin=0pt}
+
+%%%%%%%%%%%%%%%%
+%%%%% tabu %%%%%
+
+% tabu settings
+\setlength{\tabcolsep}{20pt}
+
 %%%%%%%%%%%%%%%%%%
 %%%% hyperref %%%%
 
@@ -229,6 +221,7 @@ rightsub = \frq{}
 	%allcolors=black % use this if you want to set all links to the same color
 }
 \urlstyle{same} % set same style for text and links
+\hypersetup{final} % to use draft mode
 
 %%%%%%%%%%%%%%%%%%%
 %%%% tocbibind %%%%
@@ -245,6 +238,15 @@ rightsub = \frq{}
 		\addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
 	}
 }
+
+%%%%%%%%%%%%%%%%%%%
+%%%% fcolorbox %%%%
+
+% padding thickness
+\fboxsep=5mm
+
+%border thickness
+\fboxrule=1.2pt
 
 %-----------------------------------------------------------%
 % COMMANDS DECLARATION
@@ -264,7 +266,3 @@ rightsub = \frq{}
 	\clearpage
 	\endgroup
 }
-
-% commented out because in conflict with 'tikz-feynman'
-% \overbar: to have a longer overbar
-%\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}

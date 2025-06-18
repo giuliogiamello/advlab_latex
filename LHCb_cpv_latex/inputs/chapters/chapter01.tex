@@ -1,7 +1,237 @@
-\chapter{Chapter 1}\label{chap:01}
+\chapter{Theoretical background}\label{chap:01}
 
-\section{Chapter 1, Section 1}
+\section{The Sakharov conditions}
 
-In the analysis we used two dataset: simulated and real data.
-The simulated dataset contains signal events under the assumption of a perfect detector.
-We are interested in analysing the decays of particles called B+ or B- mesons decaying into three other mesons called kaons (K+ or K-)
+For the current state of matter-antimatter asymmetry to occur in our universe, the Russian physicist Andrei Sakharov outlines three fundamental criteria that must be satisfied\cite{Sakharov}. First, there must be baryon number violation. This means that certain processes in the early universe must have allowed the net number of baryons (matter particles like protons and neutrons) to change. Second, C and CP symmetry must be violated, so that the laws of physics treat matter and antimatter differently; otherwise, any processes generating baryons and anti-baryons would occur at the same rate, cancelling each other out. Third, the universe must have gone through periods of thermal non-equilibrium, since in a perfectly balanced thermal state, even asymmetric processes would be reversed and no lasting imbalance would emerge. While the Standard Model includes limited CP violation and mechanisms for baryon number violation, their effects are too weak to explain the vast dominance of matter observed. For this lab, we are going to try take part in improving our understanding of this asymmetry through precision measurements of CP violation in LHCb.
+
+\section{CP violation in the Standard Model}
+
+In the Standard Model, the CP symmetry is the combination of C and P symmetries, where C is the \textit{charge conjugation} and P is the \textit{parity} (inversion of spacial coordinates) symmetry.
+CP violation arises from the asymmetric coupling of the weak interaction to left-handed and right-handed fermions, which is described by the charge current interactions of the W bosons.
+These interactions end up only coupling to specific charge combinations of quark flavours (up-type quarks $\Leftrightarrow{}$down-type quarks). Since quarks come in three generations, couplings between them via weak interactions are described by a $3\times3$ complex unitary matrix known as the Cabibbo-Kobayashi-Maskawa (CKM) matrix\cite{CKM}.
+
+\subsection{Cabibbo-Kobayashi-Maskawa matrix}
+
+The CKM matrix is what accounts for the mixing of different quark flavours and introduces a complex phase that can lead to the violation of Charge-Parity symmetry. Algebraically, the CKM matrix $V_{CKM}$ puts in relation expresses the weak eigenstate (d, s, b) with the mass eigenstate (d', s', b') thorough a rotation transformation (the matrix itself) of the two basis. It is a $3\times3$ matrix expressed at its simple form as :
+
+\[
+\left(\begin{array}{c}
+d^{\prime} \\
+s^{\prime} \\
+b^{\prime}
+\end{array}\right)=\underbrace{\left(\begin{array}{lll}
+V_{\mathrm{ud}} & V_{\mathrm{us}} & V_{\mathrm{ub}} \\
+V_{\mathrm{cd}} & V_{\mathrm{cs}} & V_{\mathrm{cb}} \\
+V_{\mathrm{td}} & V_{\mathrm{ts}} & V_{\mathrm{tb}}
+\end{array}\right)}_{V_{\mathrm{CKM}}} \cdot\left(\begin{array}{c}
+d \\
+s \\
+b
+\end{array}\right)
+\]
+
+Each element $V_{ij}$ represents the strength of the transition from an up-type quark "$i$" (u, c, t) to a down-type quark "$j$" (d, s, b). These elements are complex numbers, and their magnitudes determine the probabilities of various weak decays. There are 4 degrees of freedom that remain in this matrix due to it being complex-unitary, 3 mixing angles and 1 complex phase. The presence of the complex phase is what allows for CP violation where the processes involving quarks or anti-quarks can proceed with different transition probabilities if the matrix elements have non-zero imaginary parts. This complex phase arises from the 3 generational nature of the Standard Model. The matrix is analogous to a rotation matrix in 3-D space + the complex phase:
+
+\[
+V_{\text{CKM}} = \left( 
+\begin{array}{ccl}
+    c_{12} c_{13} & s_{12} c_{13} & s_{13} \mathrm{e}^{-\mathrm{i} \delta_{13}} \\
+    -s_{12} c_{23}-c_{12} s_{23} s_{13} \mathrm{e}^{\mathrm{i} \delta_{13}} & c_{12} c_{23}-s_{12} s_{23} s_{13} \mathrm{e}^{\mathrm{i} \delta_{13}} & s_{23} c_{13} \\
+    s_{12} s_{23}-c_{12} c_{23} s_{13} \mathrm{e}^{\mathrm{i} \delta_{13}} & -c_{12} s_{23}-s_{12} c_{23} s_{13} \mathrm{e}^{\mathrm{i} \delta_{13}} & c_{23} c_{13}
+\end{array}
+\right)
+\]
+
+Where the terms are the sine (s) or cosine (c) combinations ($c_{ij} \equiv \cos\theta_{ij}$) of the three mixing angles ($\theta_{12}, \theta_{13}, \theta_{23}$) and one CP violating phase ($\delta$).
+
+If we complement this theory with experimental results and formulate it as such that $V_{\mathrm{CKM}}$ would be a unity matrix if there were no quark mixing, we get the Wolfenstein parametrization expression (Approximation using $\lambda \approx 0.224$ at third order with parameters $A, \rho, \eta$):
+
+\[
+V_{\text{CKM}} = \left( 
+\begin{array}{ccccc}
+    1 - \frac{\lambda^2}{2} & \phantom{-} & \lambda & \phantom{-} & A\lambda^3(\rho - i\eta) \\
+    -\lambda & \phantom{-} & 1 - \frac{\lambda^2}{2} & \phantom{-} & A\lambda^2 \\
+    A\lambda^3(1 - \rho - i\eta) & \phantom{-} & -A\lambda^2 & \phantom{-} & 1
+\end{array}
+\right) + \mathcal{O}(\lambda^4)
+\]
+
+Where the terms are:
+\[
+\lambda \equiv |V_{us}| \equiv s_{12} \approx 0.224 \quad \text{and} \quad A \equiv \frac{s_{23}}{s_{12}^2} \approx 0.82
+\]
+with the CP violating (complex phase) terms being present only in $V_{ub}$ and $V_{td}$ couplings at $\lambda^3$ order: 
+\[
+\rho=\Re\left(\frac{s_{13} \mathrm{e}^{-\mathrm{i} \delta}}{s_{12} s_{23}}\right) \quad \quad \quad \text{and} \quad \eta=-\Im\left(\frac{s_{13} \mathrm{e}^{-\mathrm{i} \delta}}{s_{12} s_{23}}\right)
+\]
+This theoretical result tells us that for studying the involved CP-violation, we should analyse a weak process involving top-down or bottom-up quark transition.
+
+\subsection{CP violation in weak decays of B-meson}
+
+The B-meson decay processes in this analysis are of interest because their branching ratio is dependent upon the coupling elements from the $V_{CKM}$ that include the possibly CP violating phase term: $V^*_{ub}$ (and $V_{ub}$ for $B^{-}$ respectively) highlighted in \autoref{fig:bfeyn}:
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a1) {\(\overline b\)};
+            \vertex[right=1.5cm of a1] (a2) ;
+            \vertex[below=0.2em of a2] (v1) {\(\color{red}V^*_{ub}\)};
+            \vertex[right=1.5cm of a2] (a3);
+            \vertex[right=0.75cm of a3] (am);
+            \vertex[right=1.5cm of a3] (a4) {\(\overline u\)};
+            \vertex[above=3.0em of am] (c3);
+            \vertex[above=0.2em of c3] (v2) {\(V_{us}\)};
+            \vertex[below=6em of a1] (b1) {\(u\)};
+            \vertex[below=6em of a4] (b2) {\(u\)};
+            \vertex[above=2.0em of b2] (x1) {\(\overline s\)};
+            \vertex[below=2.0em of a4] (x2) {\(s\)};
+            \vertex[below=3.0em of am] (x3);
+            \vertex[above=2.0em of a4] (c1) {\(\overline s\)};
+            \vertex[above=2.0em of c1] (c2) {\(u\)};
+            \diagram* {
+            (a4) -- [fermion] (am) -- [fermion] (a2) -- [fermion] (a1),
+            (a2) -- [boson, edge label=\(W^{+}\)] (c3),
+            (c1) -- [fermion] (c3) -- [fermion] (c2),
+            (b1) -- [fermion] (b2),
+            (x3) -- [gluon, edge label=\(g\)] (a3),
+            (x1) -- [fermion] (x3) -- [fermion] (x2),
+            }
+            ;
+            \draw [decoration={brace}, decorate] (b1.south west) -- (a1.north west)
+            node [pos=0.5, left] {\(B^{+}\)};
+            \draw [decoration={brace}, decorate] (c2.north east) -- (c1.south east)
+            node [pos=0.5, right] {\(K^{+}\)};
+            \draw [decoration={brace}, decorate] (a4.north east) -- (x2.south east)
+            node [pos=0.5, right] {\(K^{-}\)};
+            \draw [decoration={brace}, decorate] (x1.north east) -- (b2.south east)
+            node [pos=0.5, right] {\(K^{+}\)};
+
+        \end{feynman}
+\end{tikzpicture}
+\caption{(one possible) Feynman Diagram for the process: \( B^+ \rightarrow K^+ K^- K^+\).}
+\label{fig:bfeyn}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a1) {\(\overline b\)};
+            \vertex[right=1.5cm of a1] (a2);
+            \vertex[below=0.2em of a2] (v1) {\(V^{*}_{cb}\)};
+            \vertex[right=1.5cm of a2] (a3);
+            \vertex[below=0.2em of a3] (v8) {\(V_{cs}\)};
+            \vertex[right=0.75cm of a3] (am);
+            \vertex[right=1.5cm of a3] (a4) {\(\overline s\)};
+            \vertex[above=3.0em of am] (c3);
+            \vertex[above=7.0em of am] (c4);
+            \vertex[above=0.2em of c3] (v2) {\(V^*_{us}\)};
+            \vertex[above=0.2em of c4] (v3) {\(V_{us}\)};
+            \vertex[below=2em of a1] (b1) {\(u\)};
+            \vertex[below=2em of a4] (b2) {\(u\)};
+            \vertex[above=2.0em of a4] (c1) {\(\overline u\)};
+            \vertex[above=2.0em of c1] (c2) {\(s\)};
+            \vertex[above=2.0em of c2] (d1) {\(\overline s\)};
+            \vertex[above=2.0em of d1] (d2) {\(u\)};
+            \diagram* {
+            (a4) -- [fermion] (a3) -- [fermion, edge label=\(\overline c\)] (a2) -- [fermion] (a1),
+            (a3) -- [boson, edge label=\(W^{-}\)] (c3),
+            (a2) -- [boson, edge label=\(W^{+}\)] (c4),
+            (c1) -- [fermion] (c3) -- [fermion] (c2),
+            (d1) -- [fermion] (c4) -- [fermion] (d2),
+            (b1) -- [fermion] (b2),
+            }
+            ;
+            \draw [decoration={brace}, decorate] (b1.south west) -- (a1.north west)
+            node [pos=0.5, left] {\(B^{+}\)};
+            \draw [decoration={brace}, decorate] (a4.north east) -- (b2.south east)
+            node [pos=0.5, right] {\(K^{+}\)};
+            \draw [decoration={brace}, decorate] (c2.north east) -- (c1.south east)
+            node [pos=0.5, right] {\(K^{-}\)};
+            \draw [decoration={brace}, decorate] (d2.north east) -- (d1.south east)
+            node [pos=0.5, right] {\(K^{+}\)};
+
+        \end{feynman}
+\end{tikzpicture}
+\caption{(another) Feynman Diagram for the process: \( B^+ \rightarrow K^+ K^- K^+\).}
+\end{figure}
+
+\newpage
+\begin{multicols}{2}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a1) {\(\overline b\)};
+                \vertex[right=1.5cm of a1] (a2) ;
+                \vertex[above=0.2em of a2] (v1) {\(V^*_{cb}\)};
+                \vertex[right=1.5cm of a2] (a3) {\(\overline u\)};
+                \vertex[right=0.5cm of a2] (am);
+                \vertex[below=6em of a1] (b1) {\(u\)};
+                \vertex[right=1.5cm of b1] (b2) ;
+                \vertex[below=6em of a3] (b3) {\(u\)};
+                \vertex[above=2.0em of b3] (x1) {\(\overline s\)};
+                \vertex[below=2.0em of a3] (x2) {\(c\)};
+                \vertex[below=3.0em of am] (x3);
+                \vertex[left=0.2em of x3] (v3) {\(V_{cs}\)};
+                \diagram* {
+                (a3) -- [fermion] (a2) -- [fermion] (a1),
+                (b1) -- [fermion] (b3),
+                (a2) -- [boson, edge label=\(W^{+}\)] (x3),
+                (x1) -- [fermion] (x3) -- [fermion] (x2),
+                }
+                ;
+                \draw [decoration={brace}, decorate] (b1.south west) -- (a1.north west)
+                node [pos=0.5, left] {\(B^{+}\)};
+                \draw [decoration={brace}, decorate] (a3.north east) -- (x2.south east)
+                node [pos=0.5, right] {\(D^{0}\)};
+                \draw [decoration={brace}, decorate] (x1.north east) -- (b3.south east)
+                node [pos=0.5, right] {\(K^{+}\)};
+            \end{feynman}
+        \end{tikzpicture}
+        \caption{Feynman Diagram for the resonant process: \( B^+\rightarrow D^0 K^+ \rightarrow K^+ K^- K^+\).}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a1) {\(\overline b\)};
+                \vertex[right=1.5cm of a1] (a2) ;
+                \vertex[above=0.2em of a2] (v1) {\(V^*_{ub}\)};
+                \vertex[right=1.5cm of a2] (a3) {\(\overline c\)};
+                \vertex[right=0.5cm of a2] (am);
+                \vertex[below=6em of a1] (b1) {\(u\)};
+                \vertex[right=1.5cm of b1] (b2) ;
+                \vertex[below=6em of a3] (b3) {\(u\)};
+                \vertex[above=2.0em of b3] (x1) {\(\overline s\)};
+                \vertex[below=2.0em of a3] (x2) {\(c\)};
+                \vertex[below=3.0em of am] (x3);
+                \vertex[left=0.2em of x3] (v3) {\(V_{cs}\)};
+                \diagram* {
+                (a3) -- [fermion] (a2) -- [fermion] (a1),
+                (b1) -- [fermion] (b3),
+                (a2) -- [boson, edge label=\(W^{+}\)] (x3),
+                (x1) -- [fermion] (x3) -- [fermion] (x2),
+                }
+                ;
+                \draw [decoration={brace}, decorate] (b1.south west) -- (a1.north west)
+                node [pos=0.5, left] {\(B^{+}\)};
+                \draw [decoration={brace}, decorate] (a3.north east) -- (x2.south east)
+                node [pos=0.5, right] {\(J/\Psi\hspace{2pt} (\chi_{c0})\)};
+                \draw [decoration={brace}, decorate] (x1.north east) -- (b3.south east)
+                node [pos=0.5, right] {\(K^{+}\)};
+            \end{feynman}
+        \end{tikzpicture}
+        \caption{Feynman Diagram for the resonant process: \( B^+\rightarrow J/\Psi\hspace{2pt} (\chi_{c0}) K^+ \rightarrow K^+ K^- K^+\).}
+    \end{figure}
+\end{multicols}
+
+The final counts between $B^{+}$ and $B^{-}$ decay processes should only differ via the possibly differing strengths of the coupling $\color{red}V^*_{ub}$, shown in red. The quantity we define and measure will called the CP asymmetry \enquote{$A_{\mathrm{CP}}$}:
+
+\[
+A_{\mathrm{CP}}=\frac{N^{+}-N^{-}}{N^{+}+N^{-}}
+\]
+
+Where $N^{-}$ is the amount of recorded \( B^- \rightarrow K^- K^+ K^-\) events and $N^{+}$ is the amount of recorded \( B^+ \rightarrow K^+ K^- K^+\) events.
