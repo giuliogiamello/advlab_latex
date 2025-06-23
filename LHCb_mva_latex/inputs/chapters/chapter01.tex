@@ -9,7 +9,7 @@
     \label{LHC}
 \end{figure}
 
-The LHCb Detector is part of one of the four large experiments set up on different points of the circular accelerator design of LHC, at CERN. Our detectors are constructed around collision points where the accelerated beams of protons are crossed with each other \( 40 \times 10^{16} \) times per second. Unlike rest of the detectors at LHC, the LHCb detector is built to detect particles from a singular direction, with the official name for the design being, "Single arm forward spectrometer". It can detect particles coming from the interaction point in the pseudorapidity range between 2 < η < 5 and it is design philosophy is geared towards measuring b (bottom) and c (charm) hadron properties alongside CP violation. \cite{LHCb_detector}
+The LHCb Detector is part of one of the four large experiments set up on different points of the circular accelerator design of LHC, at CERN. Our detectors are constructed around collision points where the accelerated beams of protons are crossed with each other \( 40 \times 10^{16} \) times per second. Unlike rest of the detectors at LHC, the LHCb detector is a single arm forward spectrometer; meaning it is purpose built to detect particles from a singular direction. It can detect particles coming from the interaction point in the pseudorapidity range between 2 < η < 5 and it is design philosophy is geared towards measuring b (bottom) and c (charm) hadron properties alongside CP violation. \cite{LHCb_detector}
 
 
 \begin{figure}[H]
@@ -21,38 +21,7 @@ The LHCb Detector is part of one of the four large experiments set up on differe
 
 (Detector elements from left to right:  I-Vertex locator, II-Ring Imaging Cherenkov Detector 1, III-Trigger Tracker(TT), IV-Dipole Magnet, V-Outer Trackers(T1,T2 and T3), VI-Ring Imaging Cherenkov Detector 2, VII-Muon Detector 1, VIII-Electromagnetic and Hadronic Calorimeters, IX-Muon Detector 2,3,4 and 5).
 
-The LHCb detector is made up of the following components:
-%--------------%
-\begin{enumerate}[label=\textbf{\arabic*.}]
-    \item \textbf{VELO (Vertex Locator)}
-    
-    \textbf{Purpose:} Precise reconstruction of primary and secondary vertices coming from the collision.
-    
-    \textbf{Features:} Silicon-strip detectors close to the beam line, retractable during the beam injection phase.
-%--------------%
-    \item \textbf{TT Station (Trigger Tracker)}
-    
-    \textbf{Purpose:} Tracking particles before entering the magnetic field.
-    
-    \textbf{Features:} Silicon microstrip detector upstream of the magnet.
-%--------------%
-    \item \textbf{Dipole Magnet}
-    
-    \textbf{Purpose:} Bends charged particles, making it possible to measure their momentum later.
-        
-    \textbf{Features:} Approximately 4 T$\cdot$m integrated Magnetic field special to the forward spectrometer design.
-%--------------%
-    \item \textbf{Tracking Stations (T1,T2 and T3)}
-    
-    \textbf{Purpose:} Tracking particles after leaving the magnetic field (Tracking charged particles for momentum measurement.).
-    
-    \textbf{Features:} Straw tube drift chambers that cover a large radius.
-%--------------%
-    \item \textbf{RICH Detectors (Ring-Imaging Cherenkov Detectors)}
-    
-    \textbf{Purpose:} Particle identification (separating pions, kaons, protons).
-    
-    \textbf{Features:} Based on the Cherenkov effect, can measure the velocity of the passing particles by recording the angle of which their Cherenkov radiation is received. The equation for the angle in terms of the velocity of the radiating particle is:
+The LHCb detector consists of several specialized subdetectors designed to reconstruct and identify particles produced in high-energy proton-proton collisions. At the heart of its tracking system is the VELO (Vertex Locator), which uses silicon-strip detectors positioned close to the beam line to provide precise reconstruction of primary and secondary vertices; it can be retracted during beam injection to protect it from damage. Upstream of the magnet is the TT Station (Trigger Tracker), a silicon microstrip detector that tracks particles before they enter the magnetic field. The dipole magnet itself generates an integrated magnetic field of about 4 T·m, bending the paths of charged particles so that their momenta can be measured downstream. Following the magnet, the tracking stations T1, T2, and T3, composed of straw tube drift chambers, continue to track the charged particles as they exit the magnetic field, ensuring accurate momentum measurement. For particle identification, Ring-Imaging Cherenkov Detectors (RICH) exploit the Cherenkov effect to distinguish between pions, kaons, and protons by measuring the angle of Cherenkov radiation, which is directly related to the particle’s velocity. The equation for the angle in terms of the velocity of the radiating particle is:
     \[
     \cos(\theta_{C}) = \frac{1}{n \frac{v}{c}} = \frac{c}{n v}
     \]
@@ -63,29 +32,12 @@ The LHCb detector is made up of the following components:
         \caption{Possible particles and their momentum via a given Cherenkov angle.}
         \label{RICH}
     \end{figure}
+    Complementing this system are the calorimeters, which measure the energy of electrons, photons, and hadrons through the development of particle showers. This calorimeter system includes a scintillating pad detector and preshower detector for electron/photon discrimination, an electromagnetic calorimeter for precise measurement of electrons and photons, and a hadronic calorimeter for measuring the energy of hadrons, including neutral hadrons like neutrons. Finally, the muon system, consisting of five stations (M1–M5) with multi-wire proportional chambers and gas electron multipliers, identifies muons, with M1 placed before and M2 to M5 positioned after the calorimeters, separated by shielding layers to suppress background. Together, these subsystems enable LHCb to perform precise measurements and probe fundamental questions in particle physics.
 %--------------%
-    \item \textbf{Calorimeters}
-    
-    \textbf{Purpose:} Measuring the energy of electrons, photons, and hadrons via particle shower.
-    
-    \textbf{Features:}
-    \begin{itemize}
-        \item \textbf{Scintillating Pad Detector:} Electron/photon Identification.
-        \item \textbf{Preshower Detector:} Distinguishes electrons from hadrons.
-        \item \textbf{Electromagnetic Calorimeter:} Measures energy of electrons and photons.
-        \item \textbf{Hadronic Calorimeter:} Measures energy of hadrons (neutral hadrons like neutrons are primarily stopped here).
-    \end{itemize}
-%--------------%
-    \item \textbf{Muon System}
-    
-    \textbf{Purpose:} Muon identification.
-    
-    \textbf{Features:} Five stations (M1–M5) using Multi-wire proportional chambers and gas-electron multipliers. The M1 station is before the calorimeters and M2 to M5 after, with shielding in between.
-\end{enumerate}
-
+\newpage
 \section{\texorpdfstring{Isolating the $B_{s}^{0}$}{} Decay}
 
-In this lab, we are interested in analysing the specific decay $B_s^0 \rightarrow \psi(2S)\,K_S^0$.
+In this laboratory course, we are interested in analysing the specific decay $B_s^0 \rightarrow \psi(2S)\,K_S^0$.
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
@@ -115,7 +67,7 @@ In this lab, we are interested in analysing the specific decay $B_s^0 \rightarro
 \caption{Leading order feynman diagram for the decay $B^{0}_{s} \xrightarrow{} \psi(2S)K^{0}_{S}$.}
 \end{figure}
 
-This decay is interesting because of some CP sensitive properties. However, we also have to contend with the signal of the similar, but more abundant decay of $B_d^0 \rightarrow \psi(2S)\,K_S^0$ in our dataset.
+This decay is interesting to analyze because of some CP sensitive properties. However, it is also going to be vital to utilize the signal of the similar, but more abundant decay of $B_d^0 \rightarrow \psi(2S)\,K_S^0$ in our dataset.
 
 \begin{figure}[H]
     \centering
@@ -145,14 +97,14 @@ This decay is interesting because of some CP sensitive properties. However, we a
     \end{tikzpicture}
 \caption{Leading order feynman diagram for the decay $B_d^{0} \xrightarrow{} \psi(2S)K^{0}_{S}$.}
 \end{figure}
-The data we receive, which has already been through a preliminary (however pretty intensive) selection process, is a reconstruction of the initial state of $B^{0}_{S}$ meson from the candidates of final state from the decay: $B_s^0 \rightarrow \psi(2S)\,K_S^0 \rightarrow (\mu^-\mu^+) (\pi^-\pi^+)$.
+The data we receive, which has already been through a preliminary computer intensive selection process, is a reconstruction of the initial state of $B^{0}_{S}$ meson from the candidates of final state from the decay: $B_s^0 \rightarrow \psi(2S)\,K_S^0 \rightarrow (\mu^-\mu^+) (\pi^-\pi^+)$.
 
-Our task is to isolate the signal of the $B_s^0$ decay from a recorded dataset and,in the following, we are going to explain how we trained a classifier to do that; so we need here to introduce and explain some theoretical concepts.
+Our task is to isolate the signal of the $B_s^0$ decay from a combinatorial background LHCb dataset,in the following, we are going to explain how we trained a classifier to do that; so we need here to introduce and explain some theoretical concepts.
 
 \subsection{Figure of merit and significance}
 
-During the training procedure of the classifier we need to evaluate and optimize the performances (maximizing the number of signal candidates while keeping the background low).
-In order to increase the performances we need to minimize the loss function: a function that measure the distance between the target value and the one reconstructed by the classifier.
+During the training procedure of the classifier we need to evaluate and optimize the performances, maximizing the number of signal candidates while keeping the background low.
+In order to increase the performances we minimize the loss function: a function that measures the absolute value distance between the true target value and the one predicted by the classifier.
 
 The inverse of such loss functions is called \qq{Figure of merit} (FOM). In this analysis, we use the Punzi FOM test to calculate the significance of the signal that comes out of our multivariate classifier:
 

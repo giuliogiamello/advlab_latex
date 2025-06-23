@@ -1,6 +1,6 @@
 \chapter{Data Analysis}\label{chap:02}
 
-Before starting our analysis of the real LHCb data, it is good practice to test and improve our analysis strategy on simulated data. This preliminary procedure is actually a common practice. In a simulation, we work under the assumption of a perfect detector with no background (only signal events) while the analysis of real events is more challenging.
+Before starting our analysis of the real LHCb data, it is good practice to test and improve our analysis strategy on simulated samples. This preliminary procedure is actually a common practice. In a simulation, we work under the assumption of a perfect detector with no background (only signal events) while the analysis of real events is more challenging.
 
 \section{Real and simulated data}
 
@@ -22,14 +22,14 @@ For the analysis of $B_{s}^{0}\rightarrow \psi(2S)K_{S}$, we are going to use th
     \item Monte-Carlo simulation of the signal decay $B_{s}^{0}\rightarrow \psi(2S)K_{S}^{0}$;
     \item Monte-Carlo simulation of the signal decay $B_{d}^{0}\rightarrow \psi(2S)K_{S}^{0}$, (kinematically similar decay).
 \end{itemize}
-Of which the LHCb data has already went through heavy pre-selection via trigger, track reconstruction, etc.\ while the distributions and the peaks of $B_{s}^{0}$ and $B_{d}^{0}$ simulation are centered around the known meson masses: $5366.93$ $[\text{MeV}/c^2]$ for $B_s^0$ and 5279.72 $[\text{MeV}/c^2]$ for $B_d^0$ (from the PDG \cite{PDG}) as seen in \Cref{predatasets}. 
+Of which the LHCb data has already went through pre-selection via various trigger filters and track reconstruction. While the distributions and the peaks of $B_{s}^{0}$ and $B_{d}^{0}$ simulation are centered around the known meson masses: $5366.93$ $[\text{MeV}/c^2]$ for $B_s^0$ and 5279.72 $[\text{MeV}/c^2]$ for $B_d^0$ (from the PDG \cite{PDG}), only the peak for $B_d^0$ is visible as seen in \Cref{predatasets}. 
 
 %%------------------------------------------------------%%
 
 \section{Strategy}
-The event datasets collected at the LHCb are put through a preliminary filter working synchronously with the data collection via hardware and software triggers. This helps us eliminate the majority of the unwanted events where analysis would have diminishing returns. After this elimination, we utilize layers of Particle Identification systems (PID) that may run both synchronously and asynchronously to the data taking. The PID systems are a vital analysis tool for reconstructing the actual process we are looking for within the amassed data. In this lab, we are going to only be interested in the steps after these procedures. We will construct a machine learning algorithm, a multi-variate classifier, that will aid us in the latter steps of isolating the signal for the decay process we are interested in.
+The event datasets collected at the LHCb are put through a preliminary filter working synchronously with the data collection via hardware and software triggers. This helps us eliminate the majority of the events that have nothing to do with our signal whereas otherwise the analysis would have diminishing returns. After this elimination, we utilize layers of Particle Identification systems (PID) that may run both synchronously and asynchronously to the data taking. The PID systems are a vital analysis tool for reconstructing the actual process we are looking for within the amassed data. In this lab, we are going to only be interested in the steps after these procedures. We will construct a machine learning algorithm, train a multi-variate classifier, that will aid us in the latter steps of isolating the signal for the decay process we are interested in from the combinatorial background.
 
-In the dataset we receive from the LHCb, we have 863 variables logged per each event shown in \Cref{predatasets}. These variables are also called \qq{features}. We are going to try to identify a few that will train a useful algorithm. The usefulness lies in the ability of discrimination of subtle differences between possible background and signal events as well as transferability from simulation to real data. The variables that are redundant, too dominatingly distant due to training bias or too indifferent between signal and background data will be discarded. We are going to train our multi-variate classifier on the purely background invariant mass range and the sPlot (statistical fit) isolated $B_d^0$ signal, so that we can apply the classification to the full range mass data and extract the mass of $B_s^0$ by doing a mass fit alongside it. Therefore completing the analysis of the $B_s^0$ decay.
+In the dataset we receive from the LHCb, we have 863 variables logged per each event shown in \Cref{predatasets}. These variables are also called \qq{features}. We are going to try to identify a few that will train a useful algorithm. The usefulness lies in the ability of discrimination of subtle differences between possible background and signal events as well as transferability from simulation to real data. The variables that are redundant, too dominatingly distant due to training bias or too indifferent between signal and background data will be discarded. We are going to train our multi-variate classifier on the purely background invariant mass range and $B_d^0$ simulation so that we can apply the classification to the full range mass data and extract the mass of $B_s^0$ by doing a mass fit alongside it. The sPlot (statistical fit) isolated $B_d^0$ signal will be used as a control for the accuracy of the features for the simulation. Therefore completing the analysis of the $B_s^0$ decay.
 
 %%------------------------------------------------------%%
 
@@ -45,9 +45,9 @@ In the dataset we receive from the LHCb, we have 863 variables logged per each e
     \caption{}
 \end{figure}
 
-We need to exhibit the problem step by step. First things first, we are going to extract some information from the invariant mass signal distributions for the simulations of $B_s^0$ as well as $B_d^0$ (\Cref{predatasets1} and \Cref{predatasets2}). The mass distribution of $B_s^0$ decay is only a short interval within the LHCb data. In order to isolate it, we define the signal window. We construct an interval centered around the peak with a lower and higher boundary on the invariant mass. We extend the boundaries until 99\% of our simulated $B_s^0$ signal events fall inside as can be seen in \Cref{signalwindow1} (Approximately 3.5 standart deviations of the distribution). As for the $B_d^0$ simulation data, we are going to complement it using sPlot to extract sWeights from the LHCb data and get a fit from real data as can be seen in \Cref{signalwindow3}.\newline
+We need to exhibit the problem step by step. First, we are going to extract some information from the invariant mass signal distributions for the simulations of $B_s^0$ as well as $B_d^0$ (\Cref{predatasets1} and \Cref{predatasets2}). The mass distribution of $B_s^0$ decay is only a short interval within the LHCb data. In order to isolate it, we define the signal window. We construct an interval centered around the peak with a lower and higher boundary on the invariant mass. We extend the boundaries until 99\% of our simulated $B_s^0$ signal events fall inside as can be seen in \Cref{signalwindow1} (Approximately 3.5 standart deviations of the distribution). As for the $B_d^0$ simulation data, we are going to complement it using sPlot to extract sWeights from the LHCb data and get a fit from real data as can be seen in \Cref{signalwindow3}.\newline
 
-For the background events to be used as non-signal label in the training of the classifier algorithm, we are going to make a cut at the higher limit of the $B_s^0$ simulated signal band and use the upper side band interval where there are no resonances. We will call this interval the \qq{upper side-band background} \Cref{usb}.
+For the background events to be used as non-signal label in the training of the classifier algorithm, we are going to make a cut at the higher limit of the $B_s^0$ simulated signal band and take the portion to the right of it as the upper side band interval where there are no expected resonances. We will call this interval of combinatorial background, the \qq{upper side-band background} \Cref{usb}.
 
 \begin{figure}[H]
 	\centering
@@ -69,7 +69,7 @@ For the background events to be used as non-signal label in the training of the 
 
 In order to start the training of a multi-variate classifier, we need to pick a number of data \textit{features} out of the 863 that will be used for the training of the machine learning algorithm. First of all, we identify the best features to use in the analysis in three steps.
 
-First step, a selection is made by comparing each feature from the sWeights applied real signal of $B_{d}^{0}$ (blue colour in \Cref{fig:fea_sel}) with the ones from the simulation of $B_{d}^{0}$ (green colour). We utilize the Kolmogorov–Smirnov test to measure the distance between the same features on different datasets and making a cut to keep only the features that fall below a certain distance threshold. Choosing features with minimal distance selects only those with the most similar feature distribution between simulation and real data, so it gives us an idea of how good the simulation is in reproducing the real processes.
+First step, a selection is made by comparing each feature from the sWeights applied real signal of $B_{d}^{0}$ (blue colour in \Cref{fig:fea_sel}) with the ones from the simulation of $B_{d}^{0}$ (green colour). We utilize the Kolmogorov–Smirnov test to measure the distance between the same features on different datasets. Making a cut to keep only the features that fall below or above a certain distance threshold. Choosing features with minimal distance selects only those with the most similar feature distribution between simulation and real data, so it gives us an idea of how good the simulation is in reproducing the real processes. Disregarding features with high distance between the sPlot (statistical fit) isolated $B_d^0$ sample and simulated $B_d^0$ sample will in turn avoid the Multi-Variate Classifier to learn to distinguish between signal and simulation.
 
 The Kolmogorov-Smirnov test \cite{KS_test} keeps the largest distance between the cumulative probability distributions $F^i$:
 \begin{equation}
@@ -79,7 +79,7 @@ where $n$  runs over all bins of the histograms.
 
 Second step, in feature selection, we compare the simulation of $B_{d}^{0}$(green colour) and the background data (red colour) to identify this time the maximal distance between the features and do another selection. In this case we want our model to be able to distinguish and classify signal over background events.
 
-Finally, we have a set of variables that is well simulated and provides good discrimination between signal and background. Last step is to check the correlation of the selected features and discard the ones with an high correlation coefficient in order to avoid biasing our model to the $B_d^0$ simulation.
+Nearing finish, we have a set of variables that is well simulated and provides good discrimination between signal and background. Last step is to check the correlation of the selected features and discard the ones with an high correlation coefficient in order to avoid biasing our model to the $B_d^0$ simulation.
 
 In Figure \Cref{fig:corr}, we plotted the correlation value for each feature on a colour scale with high colour intensity that corresponds to high correlation.
 
@@ -91,13 +91,15 @@ In Figure \Cref{fig:corr}, we plotted the correlation value for each feature on 
     \label{fig:corr}
 \end{figure}
 
+In order to check the agreement between simulation and data, the distributions of sWeighted data are compared to the control channel distributions and only variables with a test statistic of $D_n$ < 0.05 are kept. The variables are also required to have a test statistic of $D_n$ > 0.2 when comparing signal (simulation) and combinatorial background (USB). We further
+remove variables that are highly correlated (correlation > 0.9) to avoid bias.
 %%------------------------------------------------------%%
 
 \section{Model training and multivariate classification}
 
 The multivariate classifier learner we chose to use for this analysis is a gradient boosted decision tree in the $\texttt{XGBoost}$ package \cite{Chen}. A Boosted Decision Tree (BDT) is a powerful machine learning method that builds an ensemble of decision trees in a sequential manner, where each new tree is trained to correct the errors made by the previous ones. The $\texttt{XGBoost}$ (Extreme Gradient Boosting) package is a widely-used implementation of gradient-boosted decision trees, especially in classification tasks.
 
-Since the background training dataset is much larger than the signal training dataset, the background data will be weighted so that the classifier can be trained equally on signal and background samples:
+Since the combinatorial background training dataset (USB) is much larger than the $B_s^0$ simulation training dataset, the background data will be weighted so that the classifier can be trained equally on signal and background samples:
 \[
 \text{weight}=\frac{\text{\textbf{\#}signal}}{\text{\textbf{\#}background}}
 \]
@@ -114,14 +116,14 @@ Since the background training dataset is much larger than the signal training da
 
 \subsection{Boosted Decision Tree}
 
-For the classification, we train five BDTs on a 5-fold cross validation: this procedure consists of splitting the data into $k$ subsamples and use $k-1$ of those for the training ad the other one for the testing; and then repeating for $k$ times. Cross validation is used to avoid \emph{overfitting}, indeed no one specific subsample is used for final validation of the classifier.
+For the classification, we train five BDTs on a 5-fold cross validation: this procedure consists of splitting the data into $k$ subsamples and use $k-1$ of those for the training ad the other one for the testing; and then repeating for $k$ times. Cross validation is used to avoid \emph{overfitting}, indeed no one specific subsample among the $k$ subsamples are used for final validation of the classifier, hence giving the classifier a fair test each time.
 
 To measure the performance of a BDT we look at quantities like the true positive rate (TPR) and the false positive rate (FPR), meaning those events that the model has failed to classify correctly in the testing procedure. Our aim is to train the model to be as precise as possible and so, to minimize this the FPR while keeping the TPR high.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.90\linewidth]{graphs/clf0.pdf}
-    \caption{ROC curve of the first trained XBG Classifier (\emph{left}); Confusion matrix of the first trained XBG Classifier (\emph{right}).}
+    \caption{ROC curve of the first trained XBG Classifier (\emph{left}); Confusion matrix of the first trained XBG Classifier (\emph{right}) w/ 0.995 optimal cut.}
     \label{roc}
 \end{figure}
 
@@ -137,13 +139,11 @@ When plotted together to a normalized value of $1$, the TPR and FPR make up the 
 To check for overtraining, the output of the first classifier is histogramed on training and test data \Cref{traintest}. The agreement of the histograms columns and the points is a good sign that no overtraining has occurred.
 
 \subsection{Classification threshold}
-Once we complete the training and testing procedure with the 5-fold cross validation, we have to find out a suitable \emph{threshold} value (between 0 and 1).
+Once we complete the training and testing procedure with the 5-fold cross validation, we have to find out an optimal \emph{cut} value (between 0 and 1).
 
-We use the Punzi figure of merit (FOM), \Cref{eq:punzi}: for varying threshold values, the signal efficiency and number of
-background events in the signal window is computed. In particular, the number of background events in the signal window is computed by
-fitting an exponential background model to the upper sideband and extrapolating the number of events in the desired signal region. We repeat this for all five BDTs and then we compute the best threshold cut, taking the average of the threshold of each BDT.
+We use the Punzi figure of merit (FOM), \Cref{eq:punzi}: for varying cut values, the signal efficiency and number of  background events in the signal window. In particular, the number of background events in the signal window is computed by fitting an exponential background model to the upper sideband and extrapolating the number of events in the desired signal region. We repeat this for all five BDTs and then we compute the best threshold cut, taking the average of the threshold of each BDT.
 
-An entry beyond this best threshold will be considered as a signal in our classifier.
+An entry beyond this best threshold will be considered satisfactory in our classifier and kept.
 
 \begin{figure}[H]
     \centering
@@ -172,10 +172,10 @@ Now, we have to find out what signal and background yield we are getting here. T
 The two Gaussian peaks are defined as:
 
 \begin{equation}
-    G(m) = \frac{r}{\sqrt{2 \pi} \sigma_1} \exp \left[-\frac{\left(m-\mu_1\right)^2}{2 \sigma_1^2}\right]+ \frac{(1-r)}{\sqrt{2 \pi} \sigma_2} \exp \left[-\frac{\left(m-\mu_2\right)^2}{2 \sigma_2^2}\right]
+    G(m) = \frac{r}{\sqrt{2 \pi} \sigma_1} \exp \left[-\frac{\left(m-\mu_1\right)^2}{2 \sigma_1^2}\right]+ \frac{(1-r)}{\sqrt{2 \pi} \sigma_2} \exp \left[-\frac{\left(m-\mu_2\right)^2}{2 \sigma_2^2}\right] + \gamma \cdot \exp\left[- \delta \cdot m\right]
 \end{equation}
 
-where $\mu_i$ and $\sigma_i$ are the mean and width of the two Gaussians, $r$ is the ratio of the two distributions in the model.
+where $\mu_i$ and $\sigma_i$ are the mean and width of the two Gaussians, $r$ is the ratio of the two distributions in the model and the final decreasing exponential is the combinatorial background.
 
 So the full-fit model is defined as
 
@@ -185,7 +185,7 @@ So the full-fit model is defined as
 
 where $G_{B_s^0}(m)$ and $G_{B_d^0}(m)$ are the Gaussian model used to fit the two $B_s^0$ and $B_d^0$ distributions and $\alpha$, $\beta$, $\gamma$, $\delta$ are free parameter of the model, to be determined.
 
-In order to build a stable model, we firstly (pre-)fit the peaks to their respective simulation distribution so that we fix the mean and width of both signal samples, respectively. (To ensure that the peaks in the simulation match the peak shape in the data, we have classified both signal samples and applied the BDT cut \underline{before} performing the fit).
+In order to build a stable model, we firstly (pre-)fit the peaks to their respective simulation distribution so that we fix the mean and width of both signal samples, respectively. This is done in order to ensure that the peaks in the simulation match the peak shape in the data, we have classified both signal samples and applied the BDT cut before performing the fit.
 
 After that, the only free parameters of the final fit are the background yield, the $B_s^0$ and $B_d^0$ signal yield, and the slope of the exponential combinatorial background. The plot of the full-fit is in \Cref{fit}:
 
@@ -197,9 +197,9 @@ After that, the only free parameters of the final fit are the background yield, 
     \label{fit}
 \end{figure}
 
-Finally, with the parameters obtained from the fit, we can obtain the number of signal and background event, needed to compute \Cref{eq:sig}, integrating over the $B_s^0$ peak and the exponential background.
+Finally, with the parameters from the fit, we obtain the number of signal "$N_{sig}$ (38)" and background "$N_{bkg}$ (59)" events. The significance \Cref{eq:sig} is calculated  by integrating over the $B_s^0$ peak and the exponential background.
 
-The obtained significance is:
+The significance is:
 \begin{equation}
     m=5.68 \hspace{0.1em} \sigma
 \end{equation}
