@@ -80,6 +80,9 @@
 % e.g. university logo in title
 \usepackage{graphicx}
 
+% caption: to have i.e. 'Figure 1.5' in bold
+\usepackage[labelfont=bf]{caption}
+
 % titletoc: to create 'toc' (Table Of Contents) only of the appendix of the graphs
 \usepackage{titletoc}
 
@@ -124,6 +127,9 @@ rightsub = \frq{}
 
 % tabu: to have bold internal lines in tabular
 \usepackage{tabu}
+
+% titlesec: to move up in the pace and center the chapter title
+\usepackage{titlesec}
 
 % bm: bold math
 % load after all math to give access to bold math
@@ -248,6 +254,20 @@ rightsub = \frq{}
 %border thickness
 \fboxrule=1.2pt
 
+%%%%%%%%%%%%%%%%%%%
+%%%% titlesec %%%%
+
+% Adjust chapter header spacing
+\titleformat{\chapter}[display]
+    {\normalfont\bfseries\Huge}
+    {\filcenter\chaptertitlename\ \thechapter} % Chapter number format
+    {15pt} % Space between number and title (positive value prevents overlap)
+    {\Huge\filcenter} % Title format
+\titlespacing*{\chapter}
+    {0pt} % Left margin
+    {-40pt} % Vertical space before header (negative moves it up)
+    {30pt} % Vertical space after title
+
 %-----------------------------------------------------------%
 % COMMANDS DECLARATION
 %-----------------------------------------------------------%
@@ -266,4 +286,3 @@ rightsub = \frq{}
 	\clearpage
 	\endgroup
 }
-

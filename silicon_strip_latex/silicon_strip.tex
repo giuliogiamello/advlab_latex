@@ -1,7 +1,8 @@
 %-----------------------------------------------------------%
 
 % openany prevents empty pages before chapters
-\documentclass[a4paper,openany,12pt]{book}
+% leqno to have equations numbered on the left
+\documentclass[a4paper,openany,12pt,leqno]{book}  % draft
 
 % IMPORT PACKAGES
 \input{./inputs/intro/packages}
@@ -38,6 +39,7 @@
 \pagestyle{myfancy}
 \input{./inputs/chapters/chapter01}
 \input{./inputs/chapters/chapter02}
+\input{./inputs/chapters/chapter03}
 
 \pagestyle{plain}
 \input{./inputs/chapters/conclusions}
