@@ -1,7 +1,8 @@
 %-----------------------------------------------------------%
 
 % openany prevents empty pages before chapters
-\documentclass[a4paper,openany,12pt]{book}
+% leqno to have equations numbered on the left
+\documentclass[a4paper,openany,12pt,leqno]{book}  % draft
 
 % IMPORT PACKAGES
 \input{./inputs/intro/packages}
@@ -16,7 +17,6 @@
 
 % EMPTY SECOND PAGE
 \pagenumbering{roman}
-\blankpage
 \pagestyle{plain}
 
 % TABLE OF CONTENTS
@@ -31,7 +31,6 @@
 
 % CHAPTERS INPUT
 \clearpage
-\blankpage
 \pagenumbering{arabic}
 \input{./inputs/intro/introduction}
 
