@@ -1,7 +1,8 @@
 %-----------------------------------------------------------%
 
 % openany prevents empty pages before chapters
-\documentclass[a4paper,openany,12pt]{book}
+% leqno to have equations numbered on the left
+\documentclass[a4paper,12pt,leqno]{article}  % draft, openany
 
 % IMPORT PACKAGES
 \input{./inputs/intro/packages}
@@ -16,9 +17,10 @@
 
 % EMPTY SECOND PAGE
 \pagenumbering{roman}
-\blankpage
-\pagestyle{plain}
-
+%\blankpage
+%\pagestyle{plain}
+\input{./inputs/intro/abstract.tex}
+\newpage
 % TABLE OF CONTENTS
 % set \hypersetup{linkcolor=black}
 % otherwise the toc has the same color of linkcolor in hypersetup
@@ -30,14 +32,12 @@
 }
 
 % CHAPTERS INPUT
-\clearpage
-\blankpage
 \pagenumbering{arabic}
-\input{./inputs/intro/introduction}
 
-\pagestyle{myfancy}
+%\pagestyle{myfancy}
 \input{./inputs/chapters/chapter01}
 \input{./inputs/chapters/chapter02}
+\input{./inputs/chapters/chapter03}
 
 \pagestyle{plain}
 \input{./inputs/chapters/conclusions}

@@ -1,0 +1,31 @@
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a1) {\(t\)};
+            \vertex[right=3cm of a1] (a2);
+            \vertex[right=3cm of a2] (a3){\(b\)};
+            \vertex[right=1.5cm of a2] (ac);
+            \vertex[above=1.5cm of ac] (c1);
+            \vertex[above=1cm of a3] (cu);
+            \vertex[above=2cm of a3] (co);
+            \vertex[below=2cm of a1] (b1) {\(\overline t\)};
+            \vertex[below=2cm of a2] (b2) ;
+            \vertex[below=2cm of a3] (b3) {\(\overline b\)};
+            \vertex[below=3.5cm of ac] (d1);
+            \vertex[below=1cm of b3] (do);
+            \vertex[below=2cm of b3] (du);
+            \diagram* {
+            (a1) -- [fermion] (a2) -- [fermion] (a3),
+            (b3) -- [fermion] (b2) -- [fermion] (b1),
+            (c1) -- [boson, edge label=\(W^{+}\)] (a2),
+            (d1) -- [boson, edge label=\(W^{-}\)] (b2),
+            (cu) -- [fermion] (c1) -- [fermion] (co),
+            (du) -- [fermion] (d1) -- [fermion] (do),
+            };
+            \draw [decoration={brace}, decorate] (b1.south west) -- (a1.north west)
+            node [pos=0.5, left];
+        \end{feynman}
+    \end{tikzpicture}  
+\caption{Feynman diagram for the }
+\end{figure}
